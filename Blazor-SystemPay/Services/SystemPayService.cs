@@ -11,7 +11,7 @@ namespace Blazor_SystemPay.Services
 {
     public class SystemPayService : ISystemPayService
     {
-
+        
         private HttpClient _client;
         private IOptions<SystemPay> _systemPayConfig;
 

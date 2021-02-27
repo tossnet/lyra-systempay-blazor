@@ -2,6 +2,7 @@
 
 @inject IJSRuntime jsRuntime
 @inject ISystemPayService systemPayService
+@inject NavigationManager navigationManager
 
 <h1>[Lyra] system Pay</h1>
 <p>Documentation : https://paiement.systempay.fr/doc/fr-FR/rest/V4.0/javascript/spa/ </p>
@@ -36,13 +37,18 @@
 </div>
 
 @code{
+    private static Action action;
+
+    protected override void OnInitialized()
+    {
+        action = NavigateTOPaid;
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            string jsonRequest = "{\"orderId\":23720,\"amount\":20000,\"currency\":\"EUR\",\"customer\":{\"email\":\"sample@example.com\",\"billingDetails\":{\"firstName\":\"François\",\"lastName\":\"TestLyra\",\"phoneNumber\":\"0102030405\"}}}";
-
-            jsonRequest = @"{
+            string jsonRequest = @"{
                         ""orderId"": 23720,
                         ""amount"": 20000,
                         ""currency"": ""EUR"",
@@ -60,5 +66,18 @@
             string formToken = await systemPayService.GetFormToken(jsonRequest);
             await jsRuntime.InvokeVoidAsync("displayPaymentForm", formToken);
         }
-    }    
+    }
+    
+   
+    [JSInvokable]
+    public static void PaymentValidated()
+    {
+        action.Invoke();
+    }
+
+    private void NavigateTOPaid()
+    {
+        navigationManager.NavigateTo("/paid");
+    }
+
 }

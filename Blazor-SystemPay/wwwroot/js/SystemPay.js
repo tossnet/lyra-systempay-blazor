@@ -15,14 +15,6 @@ function displayPaymentForm(formToken) {
     // Set form token
     KR.setFormToken(formToken);
 
-    KR.setFormConfig({
-        'kr-post-url-success': 'https://my.site'
-    }).then(({
-        KR
-    }) => {
-        /* there is no error */
-    });
-
     // Add listener for submit event
     KR.onSubmit(onPaid);
 }
@@ -35,9 +27,12 @@ function onPaid(event) {
 
         document.getElementById('paymentForm').style.display = 'none';
 
+        var result = DotNet.invokeMethodAsync("Blazor-SystemPay", "PaymentValidated");
 
         // Show success message
         document.getElementById("paymentSuccessful").style.display = "block";
+
+
     } else {
         // Show error message to the user
         alert("Payment failed !");
