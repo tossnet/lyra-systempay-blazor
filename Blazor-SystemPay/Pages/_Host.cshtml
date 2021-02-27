@@ -31,5 +31,18 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+
+    <!-- systemPay section  -->
+    <script type="text/javascript"
+        src="https://api.systempay.fr/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js" 
+        kr-public-key="69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5"
+        kr-post-url-success="https:/my.site">
+    </script>
+
+    <!-- theme and plugins. should be loaded in the HEAD section -->
+    <link rel="stylesheet" href="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic-reset.css">
+    <script src="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic.js"></script>
+  
+    <script src="~/js/SystemPay.js"></script>
 </body>
 </html>

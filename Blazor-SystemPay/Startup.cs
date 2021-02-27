@@ -1,15 +1,12 @@
-using Blazor_SystemPay.Data;
+using System;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
+using Blazor_SystemPay.Services;
+using Blazor_SystemPay.Configurations;
 
 namespace Blazor_SystemPay
 {
@@ -28,7 +25,10 @@ namespace Blazor_SystemPay
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+
+            services.AddSingleton<HttpClient>();
+            services.AddScoped<ISystemPayService, SystemPayService>();
+            services.Configure<SystemPay>(Configuration.GetSection("SystemPay"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

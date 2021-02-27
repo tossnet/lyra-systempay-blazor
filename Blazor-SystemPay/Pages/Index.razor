@@ -1,7 +1,64 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@inject IJSRuntime jsRuntime
+@inject ISystemPayService systemPayService
 
-Welcome to your new app.
+<h1>[Lyra] system Pay</h1>
+<p>Documentation : https://paiement.systempay.fr/doc/fr-FR/rest/V4.0/javascript/spa/ </p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+
+            <button class="btn btn-pimary">Paid</button>
+
+            <!--Hidden payment form -->
+            <div id="paymentForm" class="kr-embedded" style="display:none">
+
+                <!-- payment form fields -->
+                <div class="kr-pan"></div>
+                <div class="kr-expiry"></div>
+                <div class="kr-security-code"></div>
+    
+                <!-- payment form submit button -->
+                <button class="kr-payment-button"></button>
+    
+                <!-- error zone -->
+                <div class="kr-form-error"></div>
+            </div>
+            <div id="kr-answer"></div>
+            <div id="customerror"></div>
+        </div>
+    </div>
+
+</div>
+
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            string jsonRequest = "{\"orderId\":23720,\"amount\":20000,\"currency\":\"EUR\",\"customer\":{\"email\":\"sample@example.com\",\"billingDetails\":{\"firstName\":\"François\",\"lastName\":\"TestLyra\",\"phoneNumber\":\"0102030405\"}}}";
+
+            jsonRequest = @"{
+                        ""orderId"": 23720,
+                        ""amount"": 20000,
+                        ""currency"": ""EUR"",
+                        ""customer"": {
+                            ""email"": ""sample@example.com"",
+                            ""billingDetails"":
+                            {
+                                ""firstName"": ""François"",
+                                ""lastName"": ""TestLyra"",
+                                ""phoneNumber"" : ""11223344556677""
+                            }
+                        }
+                    }";
+
+            string formToken = await systemPayService.GetFormToken(jsonRequest);
+            await jsRuntime.InvokeVoidAsync("displayPaymentForm", formToken);
+        }
+    }    
+}

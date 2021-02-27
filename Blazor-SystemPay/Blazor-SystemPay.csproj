@@ -5,4 +5,8 @@
     <RootNamespace>Blazor_SystemPay</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>
