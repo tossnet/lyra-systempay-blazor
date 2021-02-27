@@ -27,7 +27,7 @@ function onPaid(event) {
 
         document.getElementById('paymentForm').style.display = 'none';
 
-        var result = DotNet.invokeMethodAsync("Blazor-SystemPay", "PaymentValidated");
+        var result = DotNet.invokeMethodAsync("Blazor-SystemPay", "PaymentValidated", event.clientAnswer);
 
         // Show success message
         document.getElementById("paymentSuccessful").style.display = "block";
