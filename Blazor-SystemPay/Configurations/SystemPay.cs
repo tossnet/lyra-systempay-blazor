@@ -6,6 +6,5 @@ namespace Blazor_SystemPay.Configurations
     {
         public string API { get; set; }
         public string Authorization { get; set; }
-
     }
 }

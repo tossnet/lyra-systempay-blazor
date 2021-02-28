@@ -3,7 +3,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Blazor_SystemPay.Configurations;
 
@@ -37,7 +36,5 @@ namespace Blazor_SystemPay.Services
             var json = System.Text.Json.JsonDocument.Parse(res);
             return json.RootElement.GetProperty("answer").GetProperty("formToken").ToString();
         }
-
-
     }
 }

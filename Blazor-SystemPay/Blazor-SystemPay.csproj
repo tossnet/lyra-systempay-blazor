@@ -9,4 +9,8 @@
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.23.0" />
+  </ItemGroup>
+
 </Project>

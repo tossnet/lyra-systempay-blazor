@@ -1,0 +1,17 @@
+﻿@page "/summary"
+
+@using Markdig
+
+@((MarkupString) summary)
+
+@code {
+    public string summary { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var mardownFile = System.IO.File.ReadAllText(@$"{System.IO.Directory.GetCurrentDirectory()}\wwwroot\summary.md");
+
+        summary = Markdown.ToHtml(mardownFile);
+    }
+}
