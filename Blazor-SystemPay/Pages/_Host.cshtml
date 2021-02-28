@@ -1,0 +1,48 @@
+﻿@page "/"
+@namespace Blazor_SystemPay.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blazor-SystemPay</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Blazor-SystemPay.styles.css" rel="stylesheet" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+
+    <!-- systemPay section  -->
+    <script type="text/javascript"
+        src="https://api.systempay.fr/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js" 
+        kr-public-key="73239078:testpublickey_Zr3fXIKKx0mLY9YNBQEan42ano2QsdrLuyb2W54QWmUJQ"
+        kr-post-url-success="https://my.site.com">
+    </script>
+
+    <!-- theme and plugins. should be loaded in the HEAD section -->
+    <link rel="stylesheet" href="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic-reset.css">
+    <script src="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic.js"></script>
+  
+    <script src="~/js/SystemPay.js"></script>
+</body>
+</html>
