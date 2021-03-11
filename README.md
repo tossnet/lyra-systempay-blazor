@@ -54,8 +54,8 @@ namespace Blazor_SystemPay.Configurations
 }
 ```
 
-## 5) Add a Service and his Interface
-/Serices/SystemPayService.cs
+## 5) Add a Service and its Interface
+/Services/SystemPayService.cs
 ```
 using System;
 using System.Text;
@@ -99,7 +99,7 @@ namespace Blazor_SystemPay.Services
 }
 ```
 
-and /Serices/ISystemPayService.cs
+and /Services/ISystemPayService.cs
 ```
 using System;
 using System.Threading.Tasks;
